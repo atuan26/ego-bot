@@ -19,7 +19,7 @@ TG_BOT_TOKEN = os.environ.get("TG_BOT_TOKEN")
 bot = telebot.TeleBot(TG_BOT_TOKEN)
 
 MAX_ROOM_RESULT = int(os.getenv("MAX_ROOM_RESULT", 5))
-EXCLUDE_ROOM_ID = [151, 54]
+EXCLUDE_ROOM_ID = [151, 54, 158]
 SLEEP = int(os.getenv("SLEEP", 3))
 RECEIVER = []
 
@@ -48,6 +48,7 @@ def on(message):
 def send_room_status():
     res: Response = get_room_status()
 
+    #print(res)
     available_rooms = [
         room for room in res.available_rooms if room.id not in EXCLUDE_ROOM_ID
     ][:MAX_ROOM_RESULT]
